@@ -10,23 +10,25 @@ import PropTypes from 'prop-types';
  * Input container
  *
  * @param {string} title
- * @param {function} onkeypress
  * @returns {React}
  * @constructor
  */
-function Input({ title, onkeypress }) {
+function Input({ defaultValue }) {
     return (
         <input
             type="text"
-            defaultValue={title}
+            defaultValue={defaultValue}
             onChange={onkeypress}
         />
     );
 }
 
+Input.defaultProps = {
+    defaultValue: undefined,
+};
+
 Input.propTypes = {
-    onkeypress: PropTypes.func.isRequired,
-    title: PropTypes.string.isRequired,
+    defaultValue: PropTypes.string,
 };
 
 // ============================================================

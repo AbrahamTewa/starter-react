@@ -5,9 +5,8 @@ import React from 'react';
 // ============================================================
 // Import containers
 import {
-    CurrentTitle,
-    InputTitle,
-} from '../containers';
+    Input,
+} from '../atoms';
 
 // ============================================================
 // Scene
@@ -15,12 +14,9 @@ import {
 function App() {
     return (
         <div>
-            <CurrentTitle />
-            <div>
-                Set title:
-                {' '}
-                <InputTitle />
-            </div>
+            Set title:
+            {' '}
+            <Input />
         </div>
     );
 }

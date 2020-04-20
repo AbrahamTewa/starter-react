@@ -1,2 +1,2 @@
 // eslint-disable-next-line import/no-internal-modules
-import './components/index.stories';
+import './atoms/index.stories';
