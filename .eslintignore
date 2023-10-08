@@ -1,5 +1,5 @@
-/build/
-/doc/
-/node_modules/
-/reports/
-/docs/vendors/
+/dist
+/node_modules
+/reports
+/.storybook/dist
+/*/dist

@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Basic tests Empty string 1`] = `
+<h1
+  className="sc-bdnyFh fszXiL"
+>
+  Hello world
+</h1>
+`;
+
+exports[`Basic tests Simple string 1`] = `
+<h1
+  className="sc-bdnyFh fszXiL"
+>
+  One simple string
+</h1>
+`;

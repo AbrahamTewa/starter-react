@@ -1,0 +1,46 @@
+# https://taskfile.dev
+
+version: '3'
+
+silent: true
+
+tasks:
+  build:
+    desc: Build the bundle
+    cmds:
+      - npm run build
+
+  clean:
+    desc: Remove all generated files
+    cmds:
+      - rm -rf dist
+      - rm -rf reports
+      - rm *.tgz
+
+  default:
+    aliases:
+      - "dev"
+    desc: Start the development server
+    cmds:
+      - npm run dev
+    silent: true
+
+  lint:
+    desc: Run the linter
+    cmds:
+      - npm run lint
+
+  list:
+    desc: List all tasks (shortcut for task --list-all)
+    cmds:
+      - task --list-all
+
+  storybook:
+    desc: Run the test suite
+    cmds:
+      - npm run storybook
+
+  test:
+    desc: Run the test suite
+    cmds:
+      - npm test

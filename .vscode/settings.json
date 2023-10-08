@@ -1,0 +1,9 @@
+{
+  "stylelint.snippet": [
+    "css",
+    "less",
+    "postcss",
+    "typescript",
+    "typescriptreact"
+  ]
+}

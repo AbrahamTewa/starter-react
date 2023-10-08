@@ -1,0 +1,28 @@
+{
+  "name": "@internal/app",
+  "version": "2.0.0",
+  "description": "",
+  "scripts": {
+    "lint": "eslint .",
+    "test": "jest",
+    "test:update-snapshots": "jest --updateSnapshot"
+  },
+  "main": "./src/index.ts",
+  "author": "Abraham Tewa <1986767-abraham.tewa@users.noreply.gitlab.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@internal/components": "*",
+    "@sentry/react": "^7.74.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.16.0"
+  },
+  "devDependencies": {
+    "@jest/globals": "^29.7.0",
+    "@testing-library/react": "^14.0.0",
+    "@types/jest": "^29.5.5",
+    "@types/react": "^18.2.25",
+    "@types/react-dom": "^18.2.11",
+    "@typescript-eslint/eslint-plugin": "^6.7.4"
+  }
+}

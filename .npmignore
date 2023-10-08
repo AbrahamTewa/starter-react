@@ -1,0 +1,4 @@
+*
+!/dist/*
+!/reports/build-reports.html
+!README.md
