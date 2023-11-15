@@ -1,6 +1,12 @@
 // ============================================================
 // Import packages
 import * as Sentry from '@sentry/react';
+import {
+  name as PACKAGE_NAME,
+  version as PACKAGE_VERSION,
+} from '../package.json';
+
+const { SENTRY_DSN } = import.meta.env;
 
 // ============================================================
 // Functions

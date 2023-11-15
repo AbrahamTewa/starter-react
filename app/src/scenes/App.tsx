@@ -1,13 +1,11 @@
 // ============================================================
-// Import packages
-import React, { useCallback, useState } from 'react';
-
-// ============================================================
-// Import containers
+// Imports
 import {
   Input,
   Title,
 } from '@internal/components';
+
+import { useCallback, useState } from 'react';
 
 // ============================================================
 // Scene

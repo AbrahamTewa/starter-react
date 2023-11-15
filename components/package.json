@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "react": "^18.2.0",
-    "styled-components": "^6.0.9"
+    "styled-components": "^6.1.1"
   },
   "devDependencies": {
     "@storybook/react": "^7.4.6",

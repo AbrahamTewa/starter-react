@@ -4,7 +4,7 @@
 /reports
 /*.tgz
 
-/app/dist
 /.storybook/dist
 /storybook-static
 /.firebase
+/app/node_modules

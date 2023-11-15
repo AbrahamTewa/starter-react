@@ -2,7 +2,7 @@
 
 exports[`Basic tests Empty string 1`] = `
 <h1
-  className="sc-bdnyFh fszXiL"
+  className="sc-bdfCDU iEnzuz"
 >
   Hello world
 </h1>
@@ -10,7 +10,7 @@ exports[`Basic tests Empty string 1`] = `
 
 exports[`Basic tests Simple string 1`] = `
 <h1
-  className="sc-bdnyFh fszXiL"
+  className="sc-bdfCDU iEnzuz"
 >
   One simple string
 </h1>

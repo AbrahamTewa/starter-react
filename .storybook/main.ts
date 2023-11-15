@@ -1,5 +1,5 @@
 import { dirname, join } from 'path';
-import type { StorybookConfig } from '@storybook/react-webpack5';
+import type { StorybookConfig } from '@storybook/react-vite';
 
 /**
  * This function is used to resolve the absolute path of a package.
@@ -16,33 +16,17 @@ const config: StorybookConfig = {
     getAbsolutePath('@storybook/addon-onboarding'),
     getAbsolutePath('@storybook/addon-interactions'),
   ],
+  core: {
+    builder: '@storybook/builder-vite',
+  },
   docs: {
     autodocs: 'tag',
   },
-  framework: {
-    name: getAbsolutePath('@storybook/react-webpack5') as '@storybook/react-webpack5',
-    options: {},
-  },
+  framework: '@storybook/react-vite',
   stories: [
     '../components/src/**/*.stories.ts',
     '../components/src/atoms/Input.stories.ts',
   ],
-  async webpackFinal(webpackConfig) {
-    return {
-      ...webpackConfig,
-      module: {
-        ...webpackConfig.module,
-        rules: [
-          ...(webpackConfig.module?.rules || []),
-          {
-            exclude: /node_modules/,
-            test: /\.tsx?$/,
-            use: 'ts-loader',
-          },
-        ],
-      },
-    };
-  },
 };
 
 export default config;

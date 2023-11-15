@@ -3,7 +3,7 @@ stages:
   - Release
 
 default:
-  image: node:18-bullseye-slim
+  image: node:20-bullseye-slim
   before_script:
     - npm ci --cache .npm --prefer-offline
   cache:
@@ -72,6 +72,7 @@ Build:
     - npm ci
   script:
     - npm run build
+    - npm run reports:build-stats
     - >
       echo {\"commit\": \"$CI_COMMIT_SHA\", \"build\": \"$CI_JOB_ID\"} > ./dist/app/build.json
   artifacts:
@@ -83,8 +84,9 @@ Build:
 
 Semantic-Release Dry-Run:
   stage: Quality
-  image: node:18
+  image: node:20
   script:
+    - npm run reports:build-stats
     - npm run semantic-release -- --dry-run
   rules:
     - if: $CI_COMMIT_BRANCH == "main"
@@ -92,8 +94,9 @@ Semantic-Release Dry-Run:
 
 Semantic Release:
   stage: Release
-  image: node:18
+  image: node:20
   script:
+    - npm run reports:build-stats
     - npm run semantic-release
   needs:
     - Build

@@ -5,5 +5,14 @@
     "postcss",
     "typescript",
     "typescriptreact"
+  ],
+  "files.associations": {
+    "tsconfig.json": "jsonc",
+    "tsconfig.*.json": "jsonc"
+  },
+  "cSpell.words": [
+    "autodocs",
+    "stylelint",
+    "vite"
   ]
 }

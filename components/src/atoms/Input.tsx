@@ -1,6 +1,6 @@
 // ============================================================
 // Import packages
-import React, { useCallback } from 'react';
+import { useCallback } from 'react';
 import type { ChangeEventHandler } from 'react';
 
 // ============================================================

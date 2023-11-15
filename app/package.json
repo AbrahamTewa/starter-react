@@ -3,10 +3,16 @@
   "version": "2.0.0",
   "description": "",
   "scripts": {
+    "build": "tsc && vite build",
+    "dev": "vite",
     "lint": "eslint .",
     "test": "jest",
     "test:update-snapshots": "jest --updateSnapshot"
   },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "type": "module",
   "main": "./src/index.ts",
   "author": "Abraham Tewa <1986767-abraham.tewa@users.noreply.gitlab.com>",
   "license": "MIT",
