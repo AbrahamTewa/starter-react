@@ -1,0 +1,103 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
+
+name: Quality
+
+on:
+  - workflow_call
+
+jobs:
+  # Build project
+  Build:
+    name: "Build"
+    runs-on: node:20-bullseye-slim
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build project
+        run: npm run build
+
+      - name: Create bundle reports
+        run: npm run reports:build-stats
+
+      - name: Create build.json file
+        run: |
+          echo {\"commit\": \"$CI_COMMIT_SHA\", \"build\": \"$CI_JOB_ID\"} > ./dist/app/build.json
+
+      - name: Creating Github Pages files
+        run: |
+          mkdir -p ./.github-pages/reports
+          cp -r docs .github-pages
+          mv ./reports/tests/result ./.github-pages/reports/tests
+          mv ./reports/tests/lcov-report ./.github-pages/reports/coverage
+          mv ./reports/build-reports.html ./.github-pages/reports/bundle.html
+          mv ./dist/storybook ./.github-pages/storybook
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: .github-pages
+
+  # Lint project
+  Lint:
+    name: "Lint"
+    runs-on: node:20-bullseye-slim
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint project
+        run: npm run lint
+
+  # Test project
+  Test:
+    name: "Test"
+    runs-on: node:20-bullseye-slim
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Test project
+        run: npm run test
+
+  DeployEnv:
+    name: "Deploy environment"
+    needs: Build
+    runs-on: node:20-bullseye-slim
+    steps:
+      - name: Install Firebase CLI
+        run: npm install -g firebase-tools
+
+      - name: Create "deploy.json" file
+        run: 'echo {\"commit\": \"$CI_COMMIT_SHA\", \"deploy\": \"$CI_JOB_ID\"} > ./dist/app/deploy.json'
+
+      - name: Setup deploy environment
+        run: |
+          firebase hosting:channel:deploy $CI_ENVIRONMENT_SLUG > deploy.log
+          more deploy.log
+          'HOSTING_REGEX="Channel\sURL.+\K(https.+.app)"'
+          'DEPLOY_URL=$(grep -oP $HOSTING_REGEX deploy.log) || true'
+          'echo DEPLOY_URL="$DEPLOY_URL" > deploy.env'
+          more deploy.env
